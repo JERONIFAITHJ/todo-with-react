@@ -1,17 +1,10 @@
-import React, { useEffect } from "react";
-import { Grid } from "@mui/material";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Wrapper from "../UI/Wrapper";
 
 export default function LandingPage() {
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   console.log('RUN');
-  //   if(JSON.parse(localStorage.getItem('USER_DATA'))){
-  //     navigate('/todo-list');
-  //   }
-  // },[]);
   return (
     <Wrapper>
       <h1 style={{ fontSize: "2.5rem" }}>A simple todo built using ReactJS</h1>

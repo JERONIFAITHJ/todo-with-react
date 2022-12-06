@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import Wrapper from "../UI/Wrapper";
 import { v4 as uuid } from "uuid";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
 import {
   doc,
   setDoc,
@@ -14,11 +15,14 @@ import {
   where,
   onSnapshot,
 } from "firebase/firestore";
-import { db } from "../../FirebaseConfig";
+import { auth, db } from "../../FirebaseConfig";
 import CheckboxListSecondary from "./TodoRender";
+import { Grid } from "@mui/material";
+import { signOut } from "firebase/auth";
 
 export default function TodoList() {
   const [todo, setTodo] = useState("");
+  const navigate = useNavigate();
   const [todoList, setTodoList] = useState();
   const todoHandler = (e) => {
     setTodo(e.target.value);
@@ -60,8 +64,34 @@ export default function TodoList() {
     }
     setTodo("");
   };
+
+  const logOutHandler = () => {
+    localStorage.clear();
+    signOut(auth).then(() => {
+      navigate('/');
+    }).catch((e) => {console.log(e)})
+  }
+
   return (
     <Wrapper>
+      <Grid sx={{ width: "100%" }} container>
+        <Grid
+          sx={{ width: "100%", display: "flex", justifyContent: "flex-end " }}
+          item
+        >
+          <Button
+            sx={{
+              marginRight: "0",
+              backgroundColor: "#666999 !important",
+              fontSize: "1.3rem",
+            }}
+            variant="contained"
+            onClick={logOutHandler}
+          >
+            Log out
+          </Button>
+        </Grid>
+      </Grid>
       <Typography
         variant="h1"
         sx={{
@@ -79,8 +109,8 @@ export default function TodoList() {
           autoComplete="off"
           onChange={todoHandler}
           placeholder="Todo"
-          sx={{ width: { xs: "100%" },  }}
-          InputProps={{ style: { fontSize: "2rem",  } }}
+          sx={{ width: { xs: "100%" } }}
+          InputProps={{ style: { fontSize: "2rem" } }}
         />
         <Button
           onClick={addData}
@@ -100,9 +130,9 @@ export default function TodoList() {
       {todoList && todoList.length > 0 ? (
         <CheckboxListSecondary todoList={todoList} />
       ) : todoList && todoList.length === 0 ? (
-        <p style={{fontSize: '1.5rem'}}>YOU HAVE NOTHING TO DO? 😒</p>
+        <p style={{ fontSize: "1.5rem" }}>YOU HAVE NOTHING TO DO? 😒</p>
       ) : (
-        <p style={{fontSize: '1.5rem'}}>HOLD ON... 🔍</p>
+        <p style={{ fontSize: "1.5rem" }}>HOLD ON... 🔍</p>
       )}
     </Wrapper>
   );
