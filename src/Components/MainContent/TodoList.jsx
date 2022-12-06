@@ -100,9 +100,9 @@ export default function TodoList() {
       {todoList && todoList.length > 0 ? (
         <CheckboxListSecondary todoList={todoList} />
       ) : todoList && todoList.length === 0 ? (
-        <p>No data</p>
+        <p style={{fontSize: '1.5rem'}}>YOU HAVE NOTHING TO DO? 😒</p>
       ) : (
-        <p>Loading...</p>
+        <p style={{fontSize: '1.5rem'}}>HOLD ON... 🔍</p>
       )}
     </Wrapper>
   );

@@ -22,7 +22,7 @@ export default function AllRoutes() {
 
   return (
     <Fragment>
-      <Suspense fallback={<Wrapper>Loading...</Wrapper>}>
+      <Suspense fallback={<Wrapper><p style={{ fontSize: '1.5rem' }}>Loading... 🔍</p></Wrapper>}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/auth" element={<AuthPage />} />

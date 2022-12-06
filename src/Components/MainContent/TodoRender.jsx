@@ -35,7 +35,7 @@ export default function CheckboxListSecondary({ todoList }) {
       dense
       sx={{ width: "100%", backgroundColor: "#666999", borderRadius: "10px" }}
     >
-      {todoList.map((value, i) => {
+      {todoList.sort((a, b) => a.createdAt - b.createdAt).map((value, i) => {
         const labelId = `checkbox-list-secondary-label-${i}`;
         return (
           <ListItem key={i} disablePadding>
@@ -43,6 +43,7 @@ export default function CheckboxListSecondary({ todoList }) {
               <Checkbox
                 edge="end"
                 sx={{ color: "white !important" }}
+                checked={!value.status}
                 onChange={() => handleToggle(value)}
                 inputProps={{ "aria-labelledby": labelId }}
               />
