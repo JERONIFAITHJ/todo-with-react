@@ -16,7 +16,7 @@ export default function LandingPage() {
     <Wrapper>
       <h1 style={{ fontSize: "2.5rem" }}>A simple todo built using ReactJS</h1>
       <h3 style={{ fontSize: "1.8rem" }}>
-        <Link to="/auth">
+        <Link to={ JSON.parse(localStorage.getItem('USER_DATA')) ? '/todo-list' : "/auth"}>
           <span style={{ textDecoration: "underline", color: '#666999' }}>Sign in</span>{" "}
         </Link>
         to proceed!
