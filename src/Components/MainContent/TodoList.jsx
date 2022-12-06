@@ -52,7 +52,7 @@ export default function TodoList() {
         uniqueId,
         todo,
         userID: JSON.parse(localStorage.getItem("USER_DATA")).uid,
-        createdAt: new Date(),
+        createdAt: new Date().getTime(),
         status: true,
       });
     } catch (error) {
