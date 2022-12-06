@@ -9,7 +9,7 @@ export default function LandingPage() {
       <h1 style={{ fontSize: "2.5rem" }}>A simple todo built using ReactJS</h1>
       <h3 style={{ fontSize: "1.8rem" }}>
         <Link to="/auth">
-          <span style={{ textDecoration: "underline" }}>Sign in</span>{" "}
+          <span style={{ textDecoration: "underline", color: '#666999' }}>Sign in</span>{" "}
         </Link>
         to proceed!
       </h3>
